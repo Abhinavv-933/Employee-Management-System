@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+  color: #fff;
+}
+body{
+  background-color: #111;
+}
+#tasklist {
+  -webkit-overflow-scrolling: touch; /* Enables momentum scrolling on iOS */
+  overflow-x: auto; /* Ensure horizontal scrolling is enabled if needed */
+  scrollbar-width: none; /* Firefox */
+}
+#tasklist::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Webkit browsers */
+}
