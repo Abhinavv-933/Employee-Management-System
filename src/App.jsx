@@ -14,6 +14,9 @@ const App = () => {
     const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
     if (loggedInUser && loggedInUser.role) {
       setUser(loggedInUser.role);
+       if (loggedInUser.role === 'employee') {
+        setLoggedInUserData(loggedInUser);
+      }
     }
   }
   }, [authData]);
@@ -38,7 +41,11 @@ const App = () => {
   return (
     <>
       {!user ? <Login handleLogin={handleLogin} />: ''}
-      {user === 'admin' ? <AdminDashboard user={user}/> : user === 'employee' ? <EmployeeDashboard  Data={loggedInUserData}/> : null}
+      {user === 'admin' ? (
+       <AdminDashboard Data={{ role: 'admin', name: 'Abhinav' }} />
+         ) : user === 'employee' ? (
+       <EmployeeDashboard Data={loggedInUserData} />
+         ) : null}
     </>
     );
 };

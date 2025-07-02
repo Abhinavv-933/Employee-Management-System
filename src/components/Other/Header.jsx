@@ -11,3 +11,4 @@ const Header = ({Data}) => {
    </div>
   )
 }
+ export default Header

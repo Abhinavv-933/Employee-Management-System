@@ -3,7 +3,7 @@ import Header from '../Other/Header'
 import TaskListNumber from '../Other/TaskListNumber'
 import TaskList from '../TaskList/TaskList'
 
-const EmployeeDashboard = ({Data})=> {
+const EmployeeDashboard = ()=> {
   console.log(Data);
   
   return (
