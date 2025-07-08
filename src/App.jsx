@@ -9,6 +9,13 @@ const App = () => {
   const authData = useContext(AuthContext);
   const[loggedInUserData, setLoggedInUserData] = useState(null)
 
+  const handleLogout = () => {
+  localStorage.removeItem('loggedInUser'); // Clear saved session
+  setUser(null);                           // Reset user state
+  setLoggedInUserData(null);               // Reset employee data if needed
+};
+
+
   useEffect(() => {
     if(authData){
     const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
@@ -44,9 +51,9 @@ const App = () => {
     <>
       {!user ? <Login handleLogin={handleLogin} />: ''}
       {user === 'admin' ? (
-       <AdminDashboard Data={{ role: 'admin', name: 'Abhinav' }} />
+       <AdminDashboard handleLogout={handleLogout} Data={{ role: 'admin', name: 'Abhinav' }} />
          ) : user === 'employee' ? (
-       <EmployeeDashboard Data={loggedInUserData} />
+       <EmployeeDashboard Data={loggedInUserData} handleLogout={handleLogout} />
          ) : null}
     </>
     );
