@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const CreateTask = () => {
+const CreateTask = ({ onTaskCreated }) => {
   const [TaskTitle, setTaskTitle] = useState('');
   const [Date, setDate] = useState('');
   const [Assignto, setAssignto] = useState('');
@@ -15,17 +15,18 @@ const CreateTask = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    console.log("Submit clicked");
 
     const employees = JSON.parse(localStorage.getItem('employees')) || [];
 
     const task = {
-      TaskTitle,
-      Date,
-      Assignto,
-      Category,
-      Description,
+      title: TaskTitle,
+      date: Date,
+      category: Category,
+      description: Description,
       active: false,
-      newtask: true,
+      newTask: true,
+      completed: false,
       failed: false
     };
 
@@ -40,6 +41,7 @@ const CreateTask = () => {
     });
 
     localStorage.setItem('employees', JSON.stringify(updatedEmployees));
+
 
     // Reset fields
     setTaskTitle('');
